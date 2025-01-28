@@ -1,0 +1,16 @@
+The following CSS code snippet demonstrates an uncommon issue where the use of a pseudo-element selector `::before` or `::after` within a media query containing `max-width` can lead to unexpected behavior.
+
+```css
+.element {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .element::before {
+    content: "This text should appear on smaller screens";
+  }
+}
+```
+
+The issue arises when the target element `.element` itself is not visible on screens exceeding the specified `max-width`.  While this CSS will technically work, the pseudo-element's content will only be rendered if the parent element is also rendered. This might lead to situations where the pseudo-element content is never displayed, even though the media query condition appears to be met.
