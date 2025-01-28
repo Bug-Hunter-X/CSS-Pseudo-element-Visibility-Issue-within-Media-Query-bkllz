@@ -1,0 +1,17 @@
+One potential solution involves using the `visibility` property to ensure the parent element is visible even outside the target media query. Then, you can use the pseudo-element to display based on the `max-width` condition.
+
+```css
+.element {
+  display: block;
+  width: 100%;
+  visibility: visible; /* Ensure element is always visible */
+}
+
+@media (max-width: 768px) {
+  .element::before {
+    content: "This text should now appear on smaller screens";
+  }
+}
+```
+
+Alternatively, use a separate CSS class that is toggled via JavaScript when the screen size changes and only apply the pseudo-element to that class. This approach completely separates the media query from the pseudo-element display.
